@@ -1,42 +1,50 @@
-﻿using System;
-class Animal
+﻿class Animal //Classe Principal
 {
     public string Nome{get;set;}
     public int Idade{get;set;}
-    public virtual void EmitirSom()
+    public Animal(string nome, int idade) //Constructo
+    {
+        Nome = nome;
+        Idade = idade;
+    }
+    public virtual void EmitirSom() //Método
     {
         Console.WriteLine("Mensagem Genérica");
     }
 }
 
-class Cachorro : Animal
+class Cachorro : Animal //Classe Secundária
 {
-   static void Main()
+    public Cachorro(string nome, int idade) : base(nome, idade) //Constructo
     {
-        Animal animal1 = new Animal();
-        animal1.Nome = "Rex";
-        animal1.Idade = 3;
-        Console.WriteLine($"Animal: {animal1.Nome}");
-        Console.WriteLine($"Idade: {animal1.Idade} anos");
         
-    }  
-    public override void EmitirSom()
+    }
+    public override void EmitirSom() //Sobreposição
     {
         Console.WriteLine("Som: O cachorro está latindo: Au au!");
     }        
 }
-class Gato : Animal
+class Gato : Animal //Classe Secundária
 {
-    static void Main()
+    public Gato(string nome, int idade) : base(nome, idade) //Constructo
     {
-        Animal animal2 = new Animal();
-        animal2.Nome = "Mimi";
-        animal2.Idade = 2;
-        Console.WriteLine($"Animal: {animal2.Nome}");
-        Console.WriteLine($"Idade: {animal2.Idade} anos");     
-    } 
-    public override void EmitirSom()
+        
+    }
+    public override void EmitirSom() //Sobreposição
     {
         Console.WriteLine("O gato está miando: Miau!");
     }
-};
+}
+
+class Program //Console
+{
+    static void main(string[] args)
+    {
+        Console.WriteLine("=== SISTEMA DE ANIMAIS ===");
+        Cachorro cachorro = new Cachorro("Rex", 3); //Objeto 1
+        Gato gato = new Gato("Mimi", 2); //Objeto 2
+    }
+    cachorro.Apresentar();
+    Console.WriteLine();
+    gato.Apresentar();
+}
